@@ -1,0 +1,62 @@
+//#include <iostream>
+//
+//using namespace std;
+//
+//int main()
+//{
+//    cout << "Hello world!" << endl;
+//    return 0;
+//}
+#include<iostream>
+using namespace std;
+bool pan(int tmp)
+{
+    int a,b,c,n;
+    int arr[]={1,2,3,4,5,6,7,8,9};
+    for(int i=1;i<4;i++)
+    {
+        n=tmp*i;
+        a=n/100;
+        b=(n%100)/10;
+        c=n%10;
+        for(int j=0;j<9;j++)
+        {
+            if(arr[j]==a)
+                arr[j]=0;
+            if(arr[j]==b)
+                arr[j]=0;
+            if(arr[j]==c)
+                arr[j]=0;
+        }
+    }
+    for(int m=0;m<9;m++)
+    {
+        if(arr[m])
+            return false;
+    }
+    return true;
+}
+void shu(int i,int j,int k)
+{
+    int arr[]={100,10,1},tmp;
+    if(pan(i*arr[0]+j*arr[1]+k*arr[2]))
+        cout<<i*arr[0]+j*arr[1]+k*arr[2]<<" "<<2*(i*arr[0]+j*arr[1]+k*arr[2])<<" "<<3*(i*arr[0]+j*arr[1]+k*arr[2])<<endl;
+    for(int l=0;l<3;l++)
+        for(int r=l+1;r<4;r++)
+        {
+            tmp=arr[l];
+            arr[l]=arr[r];
+            arr[r]=tmp;
+            if(pan(100*arr[0]+10*arr[1]+arr[2]))
+                cout<<100*arr[0]+10*arr[1]+arr[2]<<" "<<2*(i*arr[0]+j*arr[1]+k*arr[2])<<" "<<3*(i*arr[0]+j*arr[1]+k*arr[2])<<endl;
+        }
+}
+int main()
+{
+    int arr[9]={1,2,3,4,5,6,7,8,9};
+    for(int i=0;i<7;i++)
+        for(int j=i+1;j<8;j++)
+            for(int k=j+1;k<9;k++)
+                shu(arr[i],arr[j],arr[k]);
+    return 0;
+}
